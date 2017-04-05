@@ -1,0 +1,78 @@
+
+
+# parted /dev/sda
+
+// 4G swap at /dev/sda1
+(parted) mkpart primary linux-swap 1MiB 4GiB
+
+// Remaining space at /dev/sda2
+(parted) mkpart primary ext4 4GiB 100%
+(parted) set 2 boot on
+(parted) quit
+
+# mkswap /dev/sda1
+# swapon /dev/sda1
+# mkfs.ext4 /dev/sda2
+
+# mount /dev/sda2 /mnt
+# wifi-menu 
+# pactrap -i /mnt base base-devel
+# genfstab -U /mnt > /mnt/etc/fstab
+# arch-chroot /mnt
+	# vim /etc/locale.gen 
+	# locale-gen
+	# echo "LANG=en_US.UTF-8" > /etc/locale.conf
+	# ln -sf /usr/share/zoneinfo/.... /etc/localtime
+	# hwclock --systohc
+	# mkinitcpio -p linux 
+	# pacman -S grub os-prober 
+	# grub-install --recheck /dev/sda
+	# grub-mkconfig -o /boot/grub/grub.cfg
+	# echo "yourhostname" > /etc/hostname
+	# vim /etc/hosts	
+	# pacman -S dialog wpa_supplicant iw 
+	# passwd
+	# exit
+# umount -R /mnt
+# reboot 
+
+
+Post installation
+
+Check device drivers first!
+# lspci -v
+
+For X window system:
+# sudo pacman -S xorg-server xorg-xinit deepin
+// xorg-server for Xorg
+// xorg-xinit for utilities: startx and xinit
+
+# echo "exec startdde" >> ~/.xinitrc
+# startx
+
+
+Fonts:
+ttf-opensansAUR: Open Sans Fonts
+ttf-raleway-font-familyAUR[broken link: archived in aur-mirror]: Raleway Font Family
+ttf-dejavu: Font family based on the Bitstream Vera Fonts
+ttf-droid: General-purpose fonts released by Google as part of Android
+ttf-freefont: Set of free outline fonts covering the Unicode character set
+ttf-liberation: Red Hats Liberation fonts
+
+
+Chinese input:
+# sudo pacman -S gcin 
+
+
+Video player:
+# sudo pacman -S vlc qt4 libcdio
+
+
+Terminal emulator:
+# sudo pacman -S xfce4-terminal
+
+
+# sudo pacman -S zsh git vim rsync openssh chromium most atop
+
+flux
+cscope
