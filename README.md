@@ -39,7 +39,7 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 > `# pacman -S dialog wpa_supplicant iw` //so we can use wifi-menu at next boot  
 > `# passwd` //change passwd for root  
 > `# exit`  
-+ Reboot
++ Reboot  
 `# umount -R /mnt && reboot`  
 
 # Archlinux Postinstallation Setup  
