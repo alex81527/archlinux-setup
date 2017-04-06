@@ -3,10 +3,11 @@ package="xorg-server xorg-xinit deepin deepin-screenshot\
 	gcin \
 	vlc qt4 libcdio \
 	xfce4-terminal \
-	zsh git vim rsync openssh most htop cscope \
-	chromium curl \
-	ethtool traceroute gnu-netcat\
-	gimp \
+	zsh git vim rsync openssh most htop curl \
+	chromium \
+	ethtool traceroute gnu-netcat \
+	gimp screenfetch \
+    cscope ack \
     redshift"
 
 
