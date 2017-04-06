@@ -46,7 +46,7 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 + Check if all devices are working  
 `# lspci -v`  
 + Get this install script for automatic setup  
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/configs/master/arch-post-setup.sh)"`  
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
 
 
 
