@@ -1,4 +1,5 @@
-package="xorg-server xorg-xinit deepin deepin-screenshot\
+package="intel-ucode \
+    xorg-server xorg-xinit deepin deepin-screenshot\
 	ttf-droid ttf-dejavu ttf-freefont ttf-liberation \
 	gcin \
 	vlc qt4 libcdio \
@@ -9,7 +10,6 @@ package="xorg-server xorg-xinit deepin deepin-screenshot\
 	gimp screenfetch \
     cscope ack \
     redshift"
-
 
 echo 'Packages to be installed:'
 echo '================================================================='
