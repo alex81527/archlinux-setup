@@ -1,18 +1,18 @@
-DE="xorg-server xorg-xinit deepin deepin-screenshot "
-INTEL_MICROCODE="intel-ucode "
-FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation "
-IM="gcin "
-VIDEO_PLAYER="vlc qt4 libcdio "
-TERMINAL="xfce4-terminal "
-SHELL="zsh "
-EDITOR="vim "
-PAGER="most "
-BROWSER="chromium "
-NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat "
-VER_CONTROL="git "
-CODE_TRACE="cscope ack "
-PHOTO_EDIT="gimp "
-OTHER="htop screenfetch redshift "
+DE="xorg-server xorg-xinit deepin deepin-screenshot"
+INTEL_MICROCODE="intel-ucode"
+FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation"
+IM="gcin"
+VIDEO_PLAYER="vlc qt4 libcdio"
+TERMINAL="xfce4-terminal"
+SHELL="zsh"
+EDITOR="vim"
+PAGER="most"
+BROWSER="chromium"
+NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat"
+VER_CONTROL="git"
+CODE_TRACE="cscope ack"
+PHOTO_EDIT="gimp"
+OTHER="htop screenfetch redshift"
 PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $TERMINAL \
          $SHELL $EDITOR $PAGER $BROWSER $NET_TOOLS $VER_CONTROL \
          $CODE_TRACE $PHOTO_EDIT $OTHER"
@@ -48,5 +48,8 @@ curl -sSL http://cscope.sourceforge.net/cscope_maps.vim \
     -o ~/.vim/plugin/cscope_maps.vim
 echo '[~/.vim/plugin/cscope_maps.vim] updated.'
 
+# not yet finished, still testing
+echo 'Installing vim plugins...'
+vim +PluginInstall +qall
 echo '================================================================='
 echo 'You are all set. Enjoy!'
