@@ -72,6 +72,11 @@ echo '[~/.vim/plugin/cscope_maps.vim] updated.'
 echo 'Installing vim plugins...'
 vim +PluginInstall +qall
 
+echo 'Adding git config --global'
+git config --global user.name "W. Alex Chen"
+git config --global user.email "alex81527@gmail.com"
+git config --global core.editor "vim"
+
 echo 'Cleaning up...'
 rm -rf ~/AUR_PKG
 echo '================================================================='
