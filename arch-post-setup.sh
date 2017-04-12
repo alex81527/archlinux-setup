@@ -72,6 +72,21 @@ echo '[~/.vim/plugin/cscope_maps.vim] updated.'
 echo 'Installing vim plugins...'
 vim +PluginInstall +qall
 
+
+echo 'Install powerline fonts for vim-airline plugin...'
+cd ~/AUR_PKG && git clone https://github.com/powerline/fonts.git && \
+    sh fonts/install.sh
+
+#In some distributions, Terminess Powerline is ignored by default and must be 
+#explicitly allowed.
+if [ ! -d "$HOME/.config/fontconfig/conf.d" ]; then
+    mkdir -p $HOME/.config/fontconfig/conf.d
+fi
+echo 'cp fontconfig files for powerline fonts...'
+cp fonts/fontconfig/* $HOME/.config/fontconfig/conf.d/
+fc-cache -vf
+
+
 echo 'Adding git config --global'
 git config --global user.name "W. Alex Chen"
 git config --global user.email "alex81527@gmail.com"
