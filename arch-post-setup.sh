@@ -8,18 +8,18 @@ SHELL="zsh"
 EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
-NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf \
-    iperf3"
+NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
 TEX="texlive-most texstudio"
 PLOT="gnuplot"
-PYTHON="python python2"
+PYTHON="python python2 python2-virtualenv python-pip python2-pip"
+LINTER="python-pylint python2-pylint"
 OTHER="htop screenfetch redshift"
-PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $TERMINAL \
-         $SHELL $EDITOR $PAGER $BROWSER $NET_TOOLS $VER_CONTROL \
-         $CODE_TRACE $PHOTO_EDIT $TEX $PLOT $PYTHON $OTHER"
+PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $TERMINAL $SHELL $EDITOR 
+         $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX 
+         $PLOT $PYTHON $LINTER $OTHER"
 
 echo 'Packages to be installed:'
 echo '================================================================='
