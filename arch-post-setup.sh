@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 DE="xorg-server xorg-xinit deepin deepin-screenshot"
 INTEL_MICROCODE="intel-ucode"
 FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation"
@@ -72,6 +73,8 @@ echo '[~/.vim/plugin/cscope_maps.vim] updated.'
 echo 'Installing vim plugins...'
 vim +PluginInstall +qall
 
+# Install sh checkers for syntastic
+sudo pip install bashate
 
 echo 'Install powerline fonts for vim-airline plugin...'
 cd ~/AUR_PKG && git clone https://github.com/powerline/fonts.git && \
