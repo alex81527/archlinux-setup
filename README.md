@@ -1,7 +1,7 @@
 # Archlinux Installation Walkthrough  
 Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/index.php/installation_guide) for details.  
 
-+ Verify boot mode  
++ Verify boot mode, if it exits, you are UEFI supported  
 `# ls /sys/firmware/efi/efivars`  
 + Connect to Internet  
 `# wifi-menu`  
@@ -10,6 +10,7 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 `# timedatectl set-ntp true`
 + Partition the disks (Using MBR for example)  
 `# parted /dev/sda`  
+`(parted) mklabel msdos`
 `(parted) mkpart primary linux-swap 1MiB 4GiB` //swap space  
 `(parted) mkpart primary ext4 4GiB 100%` //root mount point  
 `(parted) set 2 boot on`  
@@ -45,9 +46,8 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 # Archlinux Postinstallation Setup  
 + Check if all devices are working  
 `# lspci -v`  
-+ Get this install script for automatic setup  
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
-
++ Automatic setup script  
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
 
 
 
