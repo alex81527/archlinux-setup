@@ -54,11 +54,17 @@ curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.xinitrc \
     -o ~/.xinitrc
 echo '[~/.xinitrc] updated.'
 
+echo 'Setting up oh-my-zsh...'
+sh -c "$(curl -fsSL \
+https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo 'Fetching .zshrc config file...'
 curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.zshrc \
     -o ~/.zshrc
 echo '[~/.zshrc] updated.'
 
+echo 'Installing vim plugins...'
+bash -c "$(curl -sSL \
+https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
 
 echo 'Adding git config --global'
 git config --global user.name "W. Alex Chen"

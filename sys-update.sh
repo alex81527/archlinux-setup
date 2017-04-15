@@ -1,3 +1,3 @@
 sudo pacman -Syu
-vim +PluginUpdate
+vim +PluginUpdate +qall
 upgrade_oh_my_zsh
