@@ -67,9 +67,31 @@ bash -c "$(curl -sSL \
 https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
 
 echo 'Adding git config --global'
-git config --global user.name "W. Alex Chen"
-git config --global user.email "alex81527@gmail.com"
-git config --global core.editor "vim"
+echo -n "Configure git user.name (default = W. Alex Chen):"
+read name
+echo -n "Configure git user.email (default = alex81527@gmail.com):"
+read email
+echo -n "Configure git core.editor (default = vim):"
+read editor
+
+if [ -z "$name" ]; then
+    name="W. Alex Chen"
+fi
+
+if [ -z "$email" ]; then
+    email="alex81527@gmail.com"
+fi
+
+if [ -z "$editor" ]; then
+    editor="vim"
+fi
+
+git config --global user.name "$name"
+git config --global user.email "$email"
+git config --global core.editor "$editor"
+
+echo '[~/.gitconfig] updated.'
+cat ~/.gitconfig
 
 echo 'Cleaning up...'
 rm -rf ~/AUR_PKG
