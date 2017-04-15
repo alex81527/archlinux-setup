@@ -3,14 +3,14 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 
 + Verify boot mode, if it exits, you are UEFI supported  
 `# ls /sys/firmware/efi/efivars`  
-+ Connect to Internet  
++ Connect to Internet (e.g. WiFi)  
 `# wifi-menu`  
 `# ping -c 3 www.google.com`  
 + Update the system clock  
 `# timedatectl set-ntp true`
 + Partition the disks (Using MBR for example)  
 `# parted /dev/sda`  
-`(parted) mklabel msdos`
+`(parted) mklabel msdos`  
 `(parted) mkpart primary linux-swap 1MiB 4GiB` //swap space  
 `(parted) mkpart primary ext4 4GiB 100%` //root mount point  
 `(parted) set 2 boot on`  
@@ -44,7 +44,7 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 `# umount -R /mnt && reboot`  
 
 # Archlinux Postinstallation Setup  
-+ Check if all devices are working  
++ Check if all devices have their kernel modules in use  
 `# lspci -v`  
 + Automatic setup script  
 `bash -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
