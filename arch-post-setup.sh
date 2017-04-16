@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-DE="xorg-server xorg-xinit deepin deepin-screenshot"
+
+# Although deepin is fancy-looking, it is a bit buggy.
+# Use GNOME instead for stability.
+DE="xorg-server xorg-xinit gnome"
 INTEL_MICROCODE="intel-ucode"
 FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation"
 IM="gcin"
 VIDEO_PLAYER="vlc qt4 libcdio"
-TERMINAL="xfce4-terminal"
 SHELL="zsh"
 EDITOR="vim"
 PAGER="most"
@@ -17,10 +19,11 @@ TEX="texlive-most texstudio"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
+DEBUGGER="gdb"
 OTHER="htop screenfetch redshift"
-PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $TERMINAL $SHELL $EDITOR 
-         $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX 
-         $PLOT $PYTHON $LINTER $OTHER"
+PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER 
+         $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT 
+         $PYTHON $LINTER $DEBUGGER $OTHER"
 
 echo 'Packages to be installed:'
 echo '================================================================='
@@ -29,7 +32,8 @@ echo '================================================================='
 
 # when SIGINT received, exit directly
 sudo pacman -Sy || exit 1
-sudo pacman -S --color auto --noconfirm --needed "$PACKAGE"
+# Double quotes for $PACKAGE is purposedly taken out
+sudo pacman -S --color auto --noconfirm --needed $PACKAGE
 
 
 echo -e '\n\nInstalling AUR Packages'
