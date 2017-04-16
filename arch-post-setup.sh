@@ -11,7 +11,7 @@ SHELL="zsh"
 EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
-NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3"
+NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 networkmanager"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
@@ -50,6 +50,9 @@ cd ~/AUR_PKG && git clone https://aur.archlinux.org/foxitreader.git
 cd ~/AUR_PKG && git clone https://aur.archlinux.org/qt-installer-framework.git
 cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm 
 cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
+
+# Enable Networkmanager to start at boot
+sudo systemctl enable NetworkManager.service
 
 echo -e '\n\nDownload configuration files:'
 echo '================================================================='
@@ -98,7 +101,11 @@ echo '[~/.gitconfig] updated.'
 cat ~/.gitconfig
 
 echo 'Cleaning up...'
+# Get rid of shitty packages from gnome
+sudo pacman -R evince totem epiphany --noconfirm 
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
-echo 'You are all set. Enjoy!'
+echo 'You are all set. Reboot in 5 sec...'
+#sleep 5
+#systemctl reboot
