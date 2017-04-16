@@ -51,7 +51,7 @@ cd ~/AUR_PKG && git clone https://aur.archlinux.org/qt-installer-framework.git
 cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm 
 cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
 
-# Enable Networkmanager to start at boot
+# Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
 
 echo -e '\n\nDownload configuration files:'
@@ -61,6 +61,7 @@ curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.xinitrc \
     -o ~/.xinitrc
 echo '[~/.xinitrc] updated.'
 
+
 echo 'Setting up oh-my-zsh...'
 sh -c "$(curl -fsSL \
 https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -68,6 +69,13 @@ echo 'Fetching .zshrc config file...'
 curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.zshrc \
     -o ~/.zshrc
 echo '[~/.zshrc] updated.'
+
+
+echo 'Fetching .zprofile config file...'
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.zprofile \
+    -o ~/.zprofile
+echo '[~/.zprofile] updated.'
+
 
 echo 'Installing vim plugins...'
 bash -c "$(curl -sSL \
@@ -107,5 +115,5 @@ rm -rf ~/AUR_PKG
 echo '================================================================='
 
 echo 'You are all set. Reboot in 5 sec...'
-#sleep 5
-#systemctl reboot
+sleep 5
+systemctl reboot
