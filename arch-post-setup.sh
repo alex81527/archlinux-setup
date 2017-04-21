@@ -31,9 +31,9 @@ echo -e "$PACKAGE"
 echo '================================================================='
 
 # when SIGINT received, exit directly
-sudo pacman -Sy || exit 1
+pacman -Sy || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
-sudo pacman -S --color auto --noconfirm --needed $PACKAGE
+pacman -S --color auto --noconfirm --needed $PACKAGE
 
 
 echo -e '\n\nInstalling AUR Packages'
@@ -52,7 +52,7 @@ cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm
 cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
 
 # Run Networkmanager at bootup
-sudo systemctl enable NetworkManager.service
+systemctl enable NetworkManager.service
 
 echo -e '\n\nDownload configuration files:'
 echo '================================================================='
@@ -78,7 +78,7 @@ echo '[~/.zprofile] updated.'
 
 
 echo 'Installing vim plugins...'
-bash -c "$(curl -sSL \
+sh -c "$(curl -sSL \
 https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
 
 echo 'Adding git config --global'
@@ -110,7 +110,7 @@ cat ~/.gitconfig
 
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
-sudo pacman -R evince totem epiphany --noconfirm 
+pacman -R evince totem epiphany --noconfirm 
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
