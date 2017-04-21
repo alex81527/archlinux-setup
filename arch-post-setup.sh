@@ -20,18 +20,22 @@ PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
+MIRROR="reflector"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER \
-         $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
-         $PYTHON $LINTER $DEBUGGER $OTHER"
+$BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
+$PYTHON $LINTER $DEBUGGER $MIRROR $OTHER"
 
 echo 'Packages to be installed:'
 echo '================================================================='
 echo -e "$PACKAGE"
 echo '================================================================='
 
+# Update mirrorlist first
+reflector --verbose --latest 10 --sort rate --country TW \
+--save /etc/pacman.d/mirrorlist
 # when SIGINT received, exit directly
-pacman -Sy || exit 1
+pacman -Syyu || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
 pacman -S --color auto --noconfirm --needed $PACKAGE
 
