@@ -57,7 +57,7 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 + Check if all devices have their kernel modules in use  
 `# lspci -v`  
 + Automatic setup script  
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
+`sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
 
 
 
