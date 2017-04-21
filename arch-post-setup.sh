@@ -21,8 +21,8 @@ PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
 OTHER="htop screenfetch redshift"
-PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER 
-         $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT 
+PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER \
+         $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
          $PYTHON $LINTER $DEBUGGER $OTHER"
 
 echo 'Packages to be installed:'
