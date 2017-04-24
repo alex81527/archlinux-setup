@@ -9,20 +9,34 @@ Refer to [Official Archlinux Installation Guide](https://wiki.archlinux.org/inde
 + Update the system clock  
 `# timedatectl set-ntp true`
 + Partition the disks ([Example layout schemes](https://wiki.archlinux.org/index.php/Partitioning#Example_layouts))  
- If you boot from UEFI, an ESP partition must be added.  
- Here I use MBR as an example:  
+UEFI+GPT:  
+`# parted /dev/sda`  
+`(parted) mklabel gpt`  
+`(parted) mkpart ESP fat32 1MiB 513MiB`//the recommended size is 512MiB  
+`(parted) set 1 boot on`  
+`(parted) mkpart primary linux-swap 513MiB 4.5GiB`//swap space  
+`(parted) mkpart primary ext4 4.5GiB 100%`  
+`(parted align-check optimal N)`// N=1,2,... For performance concern, check if each partition is aligned.  
+`(parted) quit`   
+BIOS+MBR:  
 `# parted /dev/sda`  
 `(parted) mklabel msdos`  
 `(parted) mkpart primary linux-swap 1MiB 4GiB` //swap space  
 `(parted) mkpart primary ext4 4GiB 100%` //root mount point  
 `(parted) set 2 boot on`  
+`(parted align-check optimal N)`// N=1,2,... For performance concern, check if each partition is aligned.  
 `(parted) quit`  
 + Format the partitions  
 `# mkswap /dev/sda1`  
 `# swapon /dev/sda1`  
 `# mkfs.ext4 /dev/sda2`  
+For UEFI:  
+`# mkfs.fat -F32 /dev/sdxY`  
+If you get `WARNING: Not enough clusters for a 32 bit FAT!`, reduce cluster size with mkfs.fat -s2 -F32 ... or -s1;  
 + Mount the file systems  
 `mount /dev/sda2 /mnt`  
+For UEFI:  
+`mount /dev/sdxY /boot`  
 + Install Archlinux (zsh for later use of `useradd`)  
 `# pacstrap -i /mnt base base-devel vim zsh`  
 + Configuration  
