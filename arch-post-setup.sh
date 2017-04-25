@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+# Update mirrorlist first
+pacman -S --color auto --noconfirm --needed reflector
+reflector --list-countries
+echo "============================Config==============================="
+echo -n "Enter your country code: "
+read -r country
+echo -n "Configure git user.name (default = W. Alex Chen):"
+read -r name
+echo -n "Configure git user.email (default = alex81527@gmail.com):"
+read -r email
+echo -n "Configure git core.editor (default = vim):"
+read -r editor
+echo "================================================================="
+
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+reflector --verbose --latest 10 --sort rate --country  "$country"\
+    --save /etc/pacman.d/mirrorlist
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
 DE="xorg-server xorg-xinit gnome"
@@ -11,7 +28,8 @@ SHELL="zsh"
 EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
-NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 networkmanager"
+NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
+networkmanager"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
@@ -20,27 +38,24 @@ PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
-MIRROR="reflector"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER \
 $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
-$PYTHON $LINTER $DEBUGGER $MIRROR $OTHER"
+$PYTHON $LINTER $DEBUGGER $OTHER"
 
-echo 'Packages to be installed:'
+echo 'Install Official Arch Packages'
 echo '================================================================='
 echo -e "$PACKAGE"
 echo '================================================================='
 
-# Update mirrorlist first
-reflector --verbose --latest 10 --sort rate --country TW \
---save /etc/pacman.d/mirrorlist
+
 # when SIGINT received, exit directly
-pacman -Syyu || exit 1
+pacman -Syyu --color auto --noconfirm || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
 pacman -S --color auto --noconfirm --needed $PACKAGE
 
 
-echo -e '\n\nInstalling AUR Packages'
+echo -e '\n\nInstall AUR Packages'
 echo '================================================================='
 echo 'yEd foxitreader'
 echo '================================================================='
@@ -86,13 +101,6 @@ sh -c "$(curl -sSL \
 https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
 
 echo 'Adding git config --global'
-echo -n "Configure git user.name (default = W. Alex Chen):"
-read name
-echo -n "Configure git user.email (default = alex81527@gmail.com):"
-read email
-echo -n "Configure git core.editor (default = vim):"
-read editor
-
 if [ -z "$name" ]; then
     name="W. Alex Chen"
 fi
