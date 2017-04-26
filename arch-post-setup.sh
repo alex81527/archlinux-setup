@@ -20,6 +20,7 @@ echo "================================================================="
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
+
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
 DE="xorg-server xorg-xinit gnome"
@@ -53,7 +54,7 @@ echo '================================================================='
 
 
 # when SIGINT received, exit directly
-pacman -Syyu --color auto --noconfirm || exit 1
+pacman -Syy || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
 pacman -S --color auto --noconfirm --needed $PACKAGE
 
