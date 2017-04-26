@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Enable 32bit official repository [multilib]
+sed -i.backup -e '/#\[multilib\]/,+3 s/[#]//' /etc/pacman.conf
+
 # Update mirrorlist first
 pacman -S --color auto --noconfirm --needed reflector
 reflector --list-countries
