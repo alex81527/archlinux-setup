@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Enable 32bit official repository [multilib]
-sed -i.backup -e '/#\[multilib\]/,+2 s/[#]//' /etc/pacman.conf
+sudo sed -i.backup -e '/#\[multilib\]/,+2 s/[#]//' /etc/pacman.conf
 
 # Update mirrorlist first
-pacman -S --color auto --noconfirm --needed reflector
+sudo pacman -S --color auto --noconfirm --needed reflector
 reflector --list-countries
 echo "============================Config==============================="
 echo -n "Enter your country code: "
@@ -17,8 +17,8 @@ echo -n "Configure git core.editor (default = vim):"
 read -r editor
 echo "================================================================="
 
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-reflector --verbose --latest 10 --sort rate --country  "$country"\
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
 
 # Although deepin is fancy-looking, it is a bit buggy.
@@ -54,9 +54,9 @@ echo '================================================================='
 
 
 # when SIGINT received, exit directly
-pacman -Syy || exit 1
+sudo pacman -Syy || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
-pacman -S --color auto --noconfirm --needed $PACKAGE
+sudo pacman -S --color auto --noconfirm --needed $PACKAGE
 
 
 echo -e '\n\nInstall AUR Packages'
@@ -75,7 +75,7 @@ cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm
 cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
 
 # Run Networkmanager at bootup
-systemctl enable NetworkManager.service
+sudo systemctl enable NetworkManager.service
 
 echo -e '\n\nDownload configuration files:'
 echo '================================================================='
@@ -126,10 +126,10 @@ cat ~/.gitconfig
 
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
-pacman -R evince totem epiphany --noconfirm 
+sudo pacman -R evince totem epiphany --noconfirm 
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
-echo 'You are all set. Reboot in 5 sec...'
-sleep 5
-systemctl reboot
+echo 'You are all set. Reboot in 10 sec...'
+sleep 10
+sudo systemctl reboot
