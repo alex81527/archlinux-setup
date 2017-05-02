@@ -58,22 +58,6 @@ sudo pacman -Syy || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
 sudo pacman -S --color auto --noconfirm --needed $PACKAGE
 
-
-echo -e '\n\nInstall AUR Packages'
-echo '================================================================='
-echo 'yEd foxitreader'
-echo '================================================================='
-#AUR packages
-mkdir -p ~/AUR_PKG 
-# yEd
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/yed.git 
-cd ~/AUR_PKG/yed && makepkg -cis --needed --noconfirm 
-# foxitreader
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/foxitreader.git
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/qt-installer-framework.git
-cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm 
-cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
-
 # Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
 
@@ -124,9 +108,27 @@ git config --global core.editor "$editor"
 echo '[~/.gitconfig] updated.'
 cat ~/.gitconfig
 
+
+echo -e '\n\nInstall AUR Packages'
+echo '================================================================='
+echo 'yEd foxitreader'
+echo '================================================================='
+#AUR packages
+mkdir -p ~/AUR_PKG 
+# yEd, an alternative for Microsoft Visio
+cd ~/AUR_PKG && git clone https://aur.archlinux.org/yed.git 
+cd ~/AUR_PKG/yed && makepkg -cis --needed --noconfirm 
+# foxitreader
+cd ~/AUR_PKG && git clone https://aur.archlinux.org/foxitreader.git
+cd ~/AUR_PKG && git clone https://aur.archlinux.org/qt-installer-framework.git
+cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm 
+cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
+
+
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
-sudo pacman -R evince totem epiphany --noconfirm 
+# epiphany: browser, evince: pdf reader, totem: video player
+sudo pacman -Rc evince totem epiphany --noconfirm 
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
