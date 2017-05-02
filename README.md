@@ -16,7 +16,7 @@ UEFI+GPT:
 `(parted) set 1 boot on`  
 `(parted) mkpart primary linux-swap 513MiB 4.5GiB`//swap space  
 `(parted) mkpart primary ext4 4.5GiB 100%`  
-`(parted align-check optimal N)`// N=1,2,... For performance concern, check if each partition is aligned.  
+`(parted align-check optimal N)`// N=1,2,...  
 `(parted) quit`   
 BIOS+MBR:  
 `# parted /dev/sda`  
@@ -24,7 +24,7 @@ BIOS+MBR:
 `(parted) mkpart primary linux-swap 1MiB 4GiB` //swap space  
 `(parted) mkpart primary ext4 4GiB 100%` //root mount point  
 `(parted) set 2 boot on`  
-`(parted align-check optimal N)`// N=1,2,... For performance concern, check if each partition is aligned.  
+`(parted align-check optimal N)`// N=1,2,...  
 `(parted) quit`  
 + Format the partitions  
 `# mkswap /dev/sda1`  
@@ -71,7 +71,7 @@ For UEFI:
 + Check if all devices have their kernel modules in use  
 `# lspci -v`  
 + Automatic setup script  
-`sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
 
 
 
