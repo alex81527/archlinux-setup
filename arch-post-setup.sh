@@ -33,7 +33,7 @@ EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager"
+networkmanager wireshark-qt tcpdump"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
@@ -60,6 +60,9 @@ sudo pacman -S --color auto --noconfirm --needed $PACKAGE
 
 # Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
+
+# Add user to wireshark group
+sudo gpasswd -a "$USER" wireshark
 
 echo -e '\n\nDownload configuration files:'
 echo '================================================================='
