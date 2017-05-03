@@ -33,7 +33,7 @@ EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager wireshark-qt tcpdump"
+networkmanager wireshark-qt"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
