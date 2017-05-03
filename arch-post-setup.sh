@@ -131,7 +131,7 @@ cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
 # epiphany: browser, evince: pdf reader, totem: video player
-sudo pacman -Rc evince totem epiphany --noconfirm 
+sudo pacman -Rs evince totem epiphany --noconfirm 
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
