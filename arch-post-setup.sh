@@ -24,6 +24,7 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
 DE="xorg-server xorg-xinit gnome"
+DOCK="cairo-dock cairo-dock-plug-ins"
 INTEL_MICROCODE="intel-ucode"
 FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation"
 IM="gcin"
@@ -43,8 +44,8 @@ PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
 OTHER="htop screenfetch redshift"
-PACKAGE="$DE $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR $PAGER \
-$BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
+PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
+$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
 $PYTHON $LINTER $DEBUGGER $OTHER"
 
 echo 'Install Official Arch Packages'
