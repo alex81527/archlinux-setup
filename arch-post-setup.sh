@@ -43,10 +43,11 @@ PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
+POWER_SAVING="tlp"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
-$PYTHON $LINTER $DEBUGGER $OTHER"
+$PYTHON $LINTER $DEBUGGER $POWER_SAVING $OTHER"
 
 echo '================================================================='
 echo 'Install Official Arch Packages'
@@ -65,6 +66,10 @@ sudo systemctl enable NetworkManager.service
 # Add user to wireshark group
 sudo gpasswd -a "$USER" wireshark
 
+# Enable tlp 
+sudo systemctl enable tlp.service
+sudo systemctl enable tlp-sleep.service
+sudo systemctl mask systemd-rfkill.service
 
 echo '================================================================='
 echo 'Download configuration files:'
@@ -138,6 +143,6 @@ rm -rf ~/AUR_PKG
 echo '================================================================='
 
 screenfetch
-echo 'You are all set. Reboot in 10 sec...'
-sleep 10
-sudo systemctl reboot
+sudo tlp-stat -p 
+echo 'You should modify /etc/default/tlp to your need by yourself.'
+echo 'Reboot to apply all changes.'
