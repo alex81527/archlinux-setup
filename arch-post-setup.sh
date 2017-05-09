@@ -48,8 +48,8 @@ PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
 $PYTHON $LINTER $DEBUGGER $OTHER"
 
-echo 'Install Official Arch Packages'
 echo '================================================================='
+echo 'Install Official Arch Packages'
 echo -e "$PACKAGE"
 echo '================================================================='
 
@@ -65,8 +65,9 @@ sudo systemctl enable NetworkManager.service
 # Add user to wireshark group
 sudo gpasswd -a "$USER" wireshark
 
-echo -e '\n\nDownload configuration files:'
+
 echo '================================================================='
+echo 'Download configuration files:'
 echo 'Fetching .xinitrc config file...'
 curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.xinitrc \
     -o ~/.xinitrc
@@ -113,8 +114,8 @@ echo '[~/.gitconfig] updated.'
 cat ~/.gitconfig
 
 
-echo -e '\n\nInstall AUR Packages'
 echo '================================================================='
+echo -e '\n\nInstall AUR Packages'
 echo 'yEd foxitreader'
 echo '================================================================='
 #AUR packages
@@ -136,6 +137,7 @@ sudo pacman -Rs evince totem epiphany --noconfirm
 rm -rf ~/AUR_PKG
 echo '================================================================='
 
+screenfetch
 echo 'You are all set. Reboot in 10 sec...'
 sleep 10
 sudo systemctl reboot
