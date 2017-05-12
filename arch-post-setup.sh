@@ -26,7 +26,7 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
 DE="xorg-server xorg-xinit gnome"
 DOCK="cairo-dock cairo-dock-plug-ins"
 INTEL_MICROCODE="intel-ucode"
-FONTS="ttf-droid ttf-dejavu ttf-freefont ttf-liberation"
+FONTS="ttf-droid ttf-dejavu"
 IM="gcin"
 VIDEO_PLAYER="vlc qt4 libcdio"
 SHELL="zsh"
