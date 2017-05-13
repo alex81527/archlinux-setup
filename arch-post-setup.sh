@@ -26,7 +26,13 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
 DE="xorg-server xorg-xinit gnome"
 DOCK="cairo-dock cairo-dock-plug-ins"
 INTEL_MICROCODE="intel-ucode"
-FONTS="ttf-droid ttf-dejavu"
+# ttf-droid has a wide coverage of character set, including CJK.
+
+# ttf-liberation has a great looking on terminal.
+# Liberation Sans, Liberation Sans Narrow and Liberation Serif closely match 
+# the metrics of Monotype Corporation fonts Arial, Arial Narrow and 
+# Times New Roman, respectively.
+FONTS="ttf-droid ttf-liberation"
 IM="gcin"
 VIDEO_PLAYER="vlc qt4 libcdio"
 SHELL="zsh"
