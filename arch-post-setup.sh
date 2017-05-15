@@ -22,19 +22,16 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
 
 # Install AUR helper: yaourt
-mkdir ~/AUR && cd ~/AUR
+mkdir ~/AUR && (cd ~/AUR || exit)
 git clone https://aur.archlinux.org/package-query.git
-cd package-query
+cd package-query || exit 
 makepkg -cis --noconfirm
-cd ..
+cd .. 
 git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
+cd yaourt || exit 
 makepkg -cis --noconfirm
-cd ~
+cd ~ || exit
 rm -rf AUR
-
-# yaourt -S ttf-ms-fonts --noconfirm
-
 
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
@@ -47,7 +44,7 @@ INTEL_MICROCODE="intel-ucode"
 # Liberation Sans, Liberation Sans Narrow and Liberation Serif closely match 
 # the metrics of Monotype Corporation fonts Arial, Arial Narrow and 
 # Times New Roman, respectively.
-FONTS="ttf-droid ttf-liberation"
+FONTS="ttf-droid ttf-liberation ttf-ms-fonts"
 IM="gcin"
 VIDEO_PLAYER="vlc qt4 libcdio"
 SHELL="zsh"
@@ -65,21 +62,22 @@ PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
 DEBUGGER="gdb"
 POWER_SAVING="tlp"
+PDF="foxitreader"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUGGER $POWER_SAVING $OTHER"
+$PLOT $PYTHON $LINTER $DEBUGGER $POWER_SAVING $PDF $OTHER"
 
 echo '================================================================='
-echo 'Install Official Arch Packages'
+echo 'Install Arch Packages'
 echo -e "$PACKAGE"
 echo '================================================================='
 
 
 # when SIGINT received, exit directly
-sudo pacman -Syy || exit 1
+yaourt -Syy || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
-sudo pacman -S --color auto --noconfirm --needed $PACKAGE
+yaourt -S --noconfirm --needed $PACKAGE
 
 # Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
@@ -139,28 +137,11 @@ git config --global core.editor "$editor"
 echo '[~/.gitconfig] updated.'
 cat ~/.gitconfig
 
-
-echo '================================================================='
-echo -e '\n\nInstall AUR Packages'
-echo 'yEd foxitreader'
-echo '================================================================='
-#AUR packages
-mkdir -p ~/AUR_PKG 
-# yEd, an alternative for Microsoft Visio
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/yed.git 
-cd ~/AUR_PKG/yed && makepkg -cis --needed --noconfirm 
-# foxitreader
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/foxitreader.git
-cd ~/AUR_PKG && git clone https://aur.archlinux.org/qt-installer-framework.git
-cd ~/AUR_PKG/qt-installer-framework && makepkg -cis --needed --noconfirm 
-cd ~/AUR_PKG/foxitreader && makepkg -cis --needed --noconfirm 
-
-
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
-# epiphany: browser, evince: pdf reader, totem: video player
-sudo pacman -Rs evince totem epiphany --noconfirm 
-rm -rf ~/AUR_PKG
+# epiphany: browser, totem: video player
+yaourt -Rs --noconfirm totem epiphany  
+rm -rf ~/AUR
 echo '================================================================='
 
 screenfetch
