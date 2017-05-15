@@ -71,7 +71,7 @@ For UEFI:
 + Check if all devices have their kernel modules in use  
 `# lspci -v`  
 + Automatic setup script  
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)"`  
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)" | tee setup.log`  
 
 
 
