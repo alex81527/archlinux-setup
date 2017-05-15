@@ -21,12 +21,27 @@ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
 
+# Install AUR helper: yaourt
+mkdir ~/AUR && cd ~/AUR
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+makepkg -cis --noconfirm
+cd ..
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+makepkg -cis --noconfirm
+cd ~
+rm -rf AUR
+
+# yaourt -S ttf-ms-fonts --noconfirm
+
+
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
 DE="xorg-server xorg-xinit gnome"
 DOCK="cairo-dock cairo-dock-plug-ins"
 INTEL_MICROCODE="intel-ucode"
-# ttf-droid has a wide coverage of character set, including CJK.
+# ttf-droid has a wide coverage of character set for different languages.
 
 # ttf-liberation has a great looking on terminal.
 # Liberation Sans, Liberation Sans Narrow and Liberation Serif closely match 
@@ -44,7 +59,7 @@ networkmanager wireshark-qt nload"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
-TEX="texlive-most texstudio"
+TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
@@ -52,8 +67,8 @@ DEBUGGER="gdb"
 POWER_SAVING="tlp"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
-$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX $PLOT \
-$PYTHON $LINTER $DEBUGGER $POWER_SAVING $OTHER"
+$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
+$PLOT $PYTHON $LINTER $DEBUGGER $POWER_SAVING $OTHER"
 
 echo '================================================================='
 echo 'Install Official Arch Packages'
