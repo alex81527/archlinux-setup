@@ -23,7 +23,7 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
 
 # Install AUR helper: yaourt
 # The if section is added for testing reason
-if [ -n "`env yaourt 2>&1 | grep 'No such file or directory'`" ]; then
+if [ -n "$(env yaourt 2>&1 | grep 'No such file or directory')" ]; then
     mkdir ~/AUR && (cd ~/AUR || exit)
     git clone https://aur.archlinux.org/package-query.git
     cd package-query || exit 
@@ -78,9 +78,9 @@ echo '================================================================='
 
 
 # when SIGINT received, exit directly
-yaourt -Syy || exit 1
+yaourt -Syy --color || exit 1
 # Double quotes for $PACKAGE is purposedly taken out
-yaourt -S --noconfirm --needed $PACKAGE
+yaourt -S --noconfirm --needed --color $PACKAGE
 
 # Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
@@ -143,7 +143,7 @@ cat ~/.gitconfig
 echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
 # epiphany: browser, totem: video player
-yaourt -Rs --noconfirm totem epiphany  
+yaourt -Rs --noconfirm --color totem epiphany  
 rm -rf ~/AUR
 echo '================================================================='
 
