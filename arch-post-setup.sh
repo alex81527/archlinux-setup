@@ -22,16 +22,19 @@ sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
 
 # Install AUR helper: yaourt
-mkdir ~/AUR && (cd ~/AUR || exit)
-git clone https://aur.archlinux.org/package-query.git
-cd package-query || exit 
-makepkg -cis --noconfirm
-cd .. 
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt || exit 
-makepkg -cis --noconfirm
-cd ~ || exit
-rm -rf AUR
+# The if section is added for testing reason
+if [ -n "`env yaourt 2>&1 | grep 'No such file or directory'`" ]; then
+    mkdir ~/AUR && (cd ~/AUR || exit)
+    git clone https://aur.archlinux.org/package-query.git
+    cd package-query || exit 
+    makepkg -cis --noconfirm
+    cd .. 
+    git clone https://aur.archlinux.org/yaourt.git
+    cd yaourt || exit 
+    makepkg -cis --noconfirm
+    cd ~ || exit
+    rm -rf AUR
+fi
 
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
