@@ -70,7 +70,7 @@ For UEFI:
 # Archlinux Postinstallation Setup  
 + Check if all devices have their kernel modules in use  
 `# lspci -v`  
-+ Automatic setup script  
++ Run this automatic setup script. You can use `less setup.log` to view what's installed.    
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)" | tee setup.log`  
 
 
