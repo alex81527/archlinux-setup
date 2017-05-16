@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# Enable 32bit official repository [multilib]
-sudo sed -i.backup -e '/#\[multilib\]/,+2 s/[#]//' /etc/pacman.conf
-
-# Update mirrorlist first
-sudo pacman -S --color auto --noconfirm --needed reflector
-reflector --list-countries
-echo "============================Config==============================="
-echo -n "Enter your country code: "
+echo "======================Configuration=============================="
+echo -n "Enter your country code (TW/US/DE/FR/CA/JP/HK/...): "
 read -r country
 echo -n "Configure git user.name (default = W. Alex Chen):"
 read -r name
@@ -17,9 +11,15 @@ echo -n "Configure git core.editor (default = vim):"
 read -r editor
 echo "================================================================="
 
+# Update mirrorlist first
+sudo pacman -S --color auto --noconfirm --needed reflector
+#reflector --list-countries
 sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 sudo reflector --verbose --latest 10 --sort rate --country  "$country"\
     --save /etc/pacman.d/mirrorlist
+
+# Enable 32bit official repository [multilib]
+sudo sed -i.backup -e '/#\[multilib\]/,+2 s/[#]//' /etc/pacman.conf
 
 # Install AUR helper: yaourt
 # The if section is added for testing reason
@@ -63,13 +63,13 @@ TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="python-pylint python2-pylint shellcheck"
-DEBUGGER="gdb"
+DEBUG="gdb valgrind ltrace strace"
 POWER_SAVING="tlp"
 PDF="foxitreader"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUGGER $POWER_SAVING $PDF $OTHER"
+$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -137,7 +137,7 @@ git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global core.editor "$editor"
 
-echo '[~/.gitconfig] updated.'
+echo -e '[~/.gitconfig] updated.\n'
 cat ~/.gitconfig
 
 echo 'Cleaning up...'
@@ -147,7 +147,7 @@ yaourt -Rs --noconfirm --color totem epiphany
 rm -rf ~/AUR
 echo '================================================================='
 
+sudo tlp-stat  
+
 screenfetch
-sudo tlp-stat -p 
-echo 'You should modify /etc/default/tlp to your need by yourself.'
 echo 'Reboot to apply all changes.'
