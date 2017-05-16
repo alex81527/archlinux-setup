@@ -66,10 +66,11 @@ LINTER="python-pylint python2-pylint shellcheck"
 DEBUG="gdb valgrind ltrace strace"
 POWER_SAVING="tlp"
 PDF="foxitreader"
+KERNEL="linux-zen"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $OTHER"
+$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
