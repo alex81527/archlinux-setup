@@ -141,11 +141,9 @@ git config --global core.editor "$editor"
 echo -e '[~/.gitconfig] updated.\n'
 cat ~/.gitconfig
 
-echo 'Cleaning up...'
 # Get rid of shitty packages from gnome
 # epiphany: browser, totem: video player
-yaourt -Rs --noconfirm --color totem epiphany  
-rm -rf ~/AUR
+#yaourt -Rs --noconfirm --color totem epiphany  
 echo '================================================================='
 
 sudo tlp-stat  
