@@ -55,7 +55,7 @@ EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager wireshark-qt nload"
+networkmanager wireshark-qt nload iw wpa_supplicant"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
@@ -67,10 +67,13 @@ DEBUG="gdb valgrind ltrace strace"
 POWER_SAVING="tlp"
 PDF="foxitreader"
 KERNEL="linux-zen"
+# GRUB is the bootloader, efibootmgr creates bootable .efi stub entries used by 
+# the GRUB installation script.
+BOOTLOADER="grub efibootmgr os-prober"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $OTHER"
+$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -93,6 +96,10 @@ sudo gpasswd -a "$USER" wireshark
 sudo systemctl enable tlp.service
 sudo systemctl enable tlp-sleep.service
 sudo systemctl mask systemd-rfkill.service
+
+# Regenerate /boot/grub/grub.cfg to include linux-zen
+# TODO: grub-set-default X, X is the menuentry number
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo '================================================================='
 echo 'Download configuration files:'
