@@ -36,7 +36,8 @@ If you get `WARNING: Not enough clusters for a 32 bit FAT!`, reduce cluster size
 + Mount the file systems  
 `mount /dev/sda2 /mnt`  
 For UEFI:  
-`mount /dev/sdxY /boot`  
+`mkdir /mnt/boot`  
+`mount /dev/sdxY /mnt/boot`  
 + Install Archlinux (zsh for later use of `useradd`)  
 `# pacstrap -i /mnt base base-devel vim zsh`  
 + Configuration  
@@ -53,9 +54,15 @@ For UEFI:
 > `# ln -sf /usr/share/zoneinfo/<yourtimezone> /etc/localtime`  
 > `# hwclock --systohc`  
 > `# mkinitcpio -p linux` create /boot/initramfs-linux.img  
-> `# pacman -S grub os-prober`  
-> `# grub-install --recheck /dev/sda`  
-> `# grub-mkconfig -o /boot/grub/grub.cfg`  
+> `# pacman -S grub os-prober efibootmgr`  
+>> For MBR:  
+>>`# grub-install --recheck /dev/sda`  
+>>`# grub-mkconfig -o /boot/grub/grub.cfg`  
+
+>> For UEFI:  
+>> `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub`  
+>> `grub-mkconfig -o /boot/grub/grub.cfg`   
+
 > `# echo "<yourhostname>" > /etc/hostname`  
 > `# vim /etc/hosts` add _yourhostname_  
 > `# pacman -S dialog wpa_supplicant iw` so we can use wifi-menu at next boot  
@@ -72,7 +79,6 @@ For UEFI:
 `# lspci -v`  
 + Run this automatic setup script. You can use `less setup.log` to view what's installed.    
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/alex81527/archlinux-setup/master/arch-post-setup.sh)" | tee setup.log`  
-
 
 
 
