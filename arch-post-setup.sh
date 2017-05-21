@@ -55,7 +55,7 @@ EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager wireshark-qt nload iw wpa_supplicant"
+networkmanager wireshark-qt nload iw wpa_supplicant nemesis"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
 PHOTO_EDIT="gimp"
@@ -70,10 +70,12 @@ KERNEL="linux-zen"
 # GRUB is the bootloader, efibootmgr creates bootable .efi stub entries used by 
 # the GRUB installation script.
 BOOTLOADER="grub efibootmgr os-prober"
+SECURITY="gnome-screensaver suricata"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $OTHER"
+$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
+$OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -101,13 +103,17 @@ sudo systemctl mask systemd-rfkill.service
 # TODO: grub-set-default X, X is the menuentry number
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-# Setup wallpaper
-mkdir -p ~/Pictures/Wallpapers
+# Setup background wallpaper
 curl -sSL \
 https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
-jens-peter-olesen-257346.jpg > ~/Pictures/Wallpapers/jens-peter-olesen.jpg
-gsettings set org.gnome.desktop.background picture-uri ~/Pictures/Wallpapers/\
+jens-peter-olesen-257346.jpg > ~/Pictures/jens-peter-olesen.jpg
+gsettings set org.gnome.desktop.background picture-uri ~/Pictures/\
 jens-peter-olesen.jpg
+# Setup screensaver wallpaper
+curl -sSL \
+https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
+archlinux.png > ~/Pictures/archlinux.png
+gsettings set org.gnome.desktop.screensaver picture-uri ~/Pictures/archlinux.png
 
 echo '================================================================='
 echo 'Download configuration files:'
