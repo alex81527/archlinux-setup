@@ -101,6 +101,14 @@ sudo systemctl mask systemd-rfkill.service
 # TODO: grub-set-default X, X is the menuentry number
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
+# Setup wallpaper
+mkdir -p ~/Pictures/Wallpapers
+curl -sSL \
+https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
+jens-peter-olesen-257346.jpg > ~/Pictures/Wallpapers/jens-peter-olesen.jpg
+gsettings set org.gnome.desktop.background picture-uri ~/Pictures/Wallpapers/\
+jens-peter-olesen.jpg
+
 echo '================================================================='
 echo 'Download configuration files:'
 echo 'Fetching .xinitrc config file...'
