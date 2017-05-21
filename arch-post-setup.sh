@@ -70,7 +70,12 @@ KERNEL="linux-zen"
 # GRUB is the bootloader, efibootmgr creates bootable .efi stub entries used by 
 # the GRUB installation script.
 BOOTLOADER="grub efibootmgr os-prober"
-SECURITY="gnome-screensaver suricata"
+# xss-lock subscribes to the systemd-events suspend, hibernate, lock-session, 
+# and unlock-session with appropriate actions
+
+# Network IDS: suricata
+# Host-based IDS: OSSEC
+SECURITY="xss-lock-git physlock suricata sshguard"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
@@ -85,6 +90,12 @@ echo '================================================================='
 
 # when SIGINT received, exit directly
 yaourt -Syy --color || exit 1
+
+# Get gnupg first and download the public key from Open Information Security 
+# Foundation (OISF) in order to install suricata
+yaourt -S --noconfirm --needed --color gnupg
+gpg --recv-keys F7F9B0A300C1B70D
+
 # Double quotes for $PACKAGE is purposedly taken out
 yaourt -S --noconfirm --needed --color $PACKAGE
 
