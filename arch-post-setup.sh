@@ -71,11 +71,13 @@ KERNEL="linux-zen"
 # the GRUB installation script.
 BOOTLOADER="grub efibootmgr os-prober"
 # xss-lock subscribes to the systemd-events suspend, hibernate, lock-session, 
-# and unlock-session with appropriate actions
+# and unlock-session with appropriate actions using external screen lockers.
 
-# Network IDS: suricata
-# Host-based IDS: OSSEC
-SECURITY="xss-lock-git physlock suricata sshguard"
+# physlock: screen and console locker
+
+# snort: Network IDS
+# OSSEC: Host-based IDS
+SECURITY="xss-lock-git physlock sshguard"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
@@ -91,14 +93,11 @@ echo '================================================================='
 # when SIGINT received, exit directly
 yaourt -Syy --color || exit 1
 
-# Get gnupg first and download the public key from Open Information Security 
-# Foundation (OISF) in order to install suricata
-yaourt -S --noconfirm --needed --color gnupg
-gpg --recv-keys F7F9B0A300C1B70D
-
 # Double quotes for $PACKAGE is purposedly taken out
 yaourt -S --noconfirm --needed --color $PACKAGE
 
+
+############################Package Configuration###############################
 # Run Networkmanager at bootup
 sudo systemctl enable NetworkManager.service
 
@@ -114,6 +113,18 @@ sudo systemctl mask systemd-rfkill.service
 # TODO: grub-set-default X, X is the menuentry number
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
+# Prevent root login for ssh
+sudo sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
+# Enable sshguard
+sudo iptables -N sshguard
+sudo iptables -A INPUT -p tcp --dport 22 -j sshguard
+sudo iptables-save > iptables.rules
+sudo cp iptables.rules /etc/iptables/
+sudo systemctl enable sshguard.service
+
+# Enable iptables
+sudo systemctl enable iptables.service
+
 # Setup background wallpaper
 curl -sSL \
 https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
@@ -125,6 +136,8 @@ curl -sSL \
 https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
 archlinux.png > ~/Pictures/archlinux.png
 gsettings set org.gnome.desktop.screensaver picture-uri ~/Pictures/archlinux.png
+
+################################################################################
 
 echo '================================================================='
 echo 'Download configuration files:'
