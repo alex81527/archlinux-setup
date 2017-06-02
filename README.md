@@ -49,7 +49,7 @@ For UEFI:
 >> zh_TW.UTF-8 UTF-8 (gcin needs LC_CTYPE=zh_TW.UTF-8, and gnome-terminal will have locale issues if this line is commented)  
 >> zh_TW BIG5  
 
-`# locale-gen`  
+>`# locale-gen`  
 > `# echo "LANG=en_US.UTF-8" > /etc/locale.conf`  
 > `# ln -sf /usr/share/zoneinfo/<yourtimezone> /etc/localtime`  
 > `# hwclock --systohc`  
