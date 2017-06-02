@@ -55,10 +55,10 @@ EDITOR="vim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager wireshark-qt nload iw wpa_supplicant nemesis"
+networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
-PHOTO_EDIT="gimp"
+IMAGE_CROP="gthumb"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
@@ -80,7 +80,7 @@ BOOTLOADER="grub efibootmgr os-prober"
 SECURITY="xss-lock-git physlock sshguard"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
-$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $PHOTO_EDIT $TEX_SUITE \
+$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $IMAGE_CROP $TEX_SUITE \
 $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
 $OTHER"
 
@@ -120,6 +120,7 @@ sudo iptables -N sshguard
 sudo iptables -A INPUT -p tcp --dport 22 -j sshguard
 sudo iptables-save > iptables.rules
 sudo cp iptables.rules /etc/iptables/
+rm -f iptables.rules
 sudo systemctl enable sshguard.service
 
 # Enable iptables
@@ -191,7 +192,6 @@ cat ~/.gitconfig
 #yaourt -Rs --noconfirm --color totem epiphany  
 echo '================================================================='
 
-sudo tlp-stat  
-
+sudo tlp-stat
 screenfetch
 echo 'Reboot to apply all changes.'
