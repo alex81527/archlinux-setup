@@ -78,11 +78,12 @@ BOOTLOADER="grub efibootmgr os-prober"
 # snort: Network IDS
 # OSSEC: Host-based IDS
 SECURITY="xss-lock-git physlock sshguard"
+TMUX="tmux"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $IMAGE_CROP $TEX_SUITE \
 $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
-$OTHER"
+$TMUX $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -126,6 +127,12 @@ sudo systemctl enable sshguard.service
 # Enable iptables
 sudo systemctl enable iptables.service
 
+# Setup powerline for tmux
+mkdir -p ~/github && cd ~/github
+git clone https://github.com/powerline/powerline.git
+cd ~
+sudo pip install powerline-status
+
 # Setup background wallpaper
 curl -sSL \
 https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
@@ -147,6 +154,11 @@ curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.xinitrc \
     -o ~/.xinitrc
 echo '[~/.xinitrc] updated.'
 
+
+echo 'Fetching .tmux.conf config file...'
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.tmux.conf\
+    -o ~/.tmux.conf
+echo '[~/.tmux.conf] updated.'
 
 echo 'Setting up oh-my-zsh...'
 sh -c "$(curl -fsSL \
