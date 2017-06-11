@@ -134,16 +134,16 @@ cd ~
 sudo pip install powerline-status
 
 # Setup background wallpaper
+wallpaper="taipei101.jpg"
 curl -sSL \
 https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
-jens-peter-olesen-257346.jpg > ~/Pictures/jens-peter-olesen.jpg
-gsettings set org.gnome.desktop.background picture-uri ~/Pictures/\
-jens-peter-olesen.jpg
+$wallpaper > ~/Pictures/$wallpaper
+gsettings set org.gnome.desktop.background picture-uri ~/Pictures/$wallpaper
 # Setup screensaver wallpaper
-curl -sSL \
-https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
-archlinux.png > ~/Pictures/archlinux.png
-gsettings set org.gnome.desktop.screensaver picture-uri ~/Pictures/archlinux.png
+#curl -sSL \
+#https://raw.githubusercontent.com/alex81527/archlinux-setup/master/wallpaper/\
+#archlinux.png > ~/Pictures/archlinux.png
+#gsettings set org.gnome.desktop.screensaver picture-uri ~/Pictures/archlinux.png
 
 ################################################################################
 
