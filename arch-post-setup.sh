@@ -51,14 +51,16 @@ FONTS="ttf-droid ttf-liberation ttf-ms-fonts"
 IM="gcin"
 VIDEO_PLAYER="vlc qt4 libcdio"
 SHELL="zsh"
-EDITOR="vim"
+# In order to use system buffer, we need the +clipboard feature, which is 
+# missing in vim.
+EDITOR="gvim"
 PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
 networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
 VER_CONTROL="git"
 CODE_TRACE="cscope ack"
-IMAGE_CROP="gthumb"
+IMAGE_CROP="pinta"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
@@ -79,11 +81,12 @@ BOOTLOADER="grub efibootmgr os-prober"
 # OSSEC: Host-based IDS
 SECURITY="xss-lock-git physlock sshguard"
 TMUX="tmux"
+SPOTIFY="spotify"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $IMAGE_CROP $TEX_SUITE \
 $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
-$TMUX $OTHER"
+$TMUX $SPOTIFY $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
