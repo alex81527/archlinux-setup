@@ -131,10 +131,10 @@ sudo systemctl enable sshguard.service
 sudo systemctl enable iptables.service
 
 # Setup powerline for tmux
-mkdir -p ~/github && cd ~/github
-git clone https://github.com/powerline/powerline.git
-cd ~
-sudo pip install powerline-status
+#mkdir -p ~/github && cd ~/github
+#git clone https://github.com/powerline/powerline.git
+#cd ~
+#sudo pip install powerline-status
 
 # Setup background wallpaper
 wallpaper="taipei101.jpg"
