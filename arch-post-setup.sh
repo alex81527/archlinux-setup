@@ -39,7 +39,7 @@ fi
 # Although deepin is fancy-looking, it is a bit buggy.
 # Use GNOME instead for stability.
 DE="xorg-server xorg-xinit gnome"
-DOCK="cairo-dock cairo-dock-plug-ins"
+DOCK="plank"
 INTEL_MICROCODE="intel-ucode"
 # ttf-droid has a wide coverage of character set for different languages.
 
