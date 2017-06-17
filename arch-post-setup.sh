@@ -49,7 +49,7 @@ INTEL_MICROCODE="intel-ucode"
 # Times New Roman, respectively.
 FONTS="ttf-droid ttf-liberation ttf-ms-fonts"
 IM="gcin"
-VIDEO_PLAYER="vlc qt4 libcdio"
+MULTIMEDIA="vlc qt4 libcdio ffmpeg"
 SHELL="zsh"
 # In order to use system buffer, we need the +clipboard feature, which is 
 # missing in vim.
@@ -58,8 +58,8 @@ PAGER="most"
 BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
 networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
-VER_CONTROL="git"
-CODE_TRACE="cscope ack"
+GIT="git"
+CODE_TRACING="cscope ack"
 IMAGE_CROP="pinta"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
@@ -83,8 +83,8 @@ SECURITY="xss-lock-git physlock sshguard"
 TMUX="tmux"
 SPOTIFY="spotify"
 OTHER="htop screenfetch redshift"
-PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $VIDEO_PLAYER $SHELL $EDITOR \
-$PAGER $BROWSER $NET_TOOLS $VER_CONTROL $CODE_TRACE $IMAGE_CROP $TEX_SUITE \
+PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
+$PAGER $BROWSER $NET_TOOLS $GIT $CODE_TRACING $IMAGE_CROP $TEX_SUITE \
 $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
 $TMUX $SPOTIFY $OTHER"
 
