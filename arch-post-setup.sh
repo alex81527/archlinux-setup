@@ -59,7 +59,8 @@ BROWSER="chromium"
 NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
 networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
 GIT="git"
-CODE_TRACING="cscope ack"
+CODE_TRACING="ctags cscope ack"
+CODE_FORMATTER="clang autopep8"
 IMAGE_CROP="pinta"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
@@ -84,9 +85,9 @@ TMUX="tmux"
 SPOTIFY="spotify"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
-$PAGER $BROWSER $NET_TOOLS $GIT $CODE_TRACING $IMAGE_CROP $TEX_SUITE \
-$PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER $SECURITY \
-$TMUX $SPOTIFY $OTHER"
+$PAGER $BROWSER $NET_TOOLS $GIT $CODE_TRACING $CODE_FORMATTER $IMAGE_CROP \
+$TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER \
+$SECURITY $TMUX $SPOTIFY $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
