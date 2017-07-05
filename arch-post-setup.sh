@@ -56,11 +56,13 @@ SHELL="zsh"
 EDITOR="gvim"
 PAGER="most"
 BROWSER="chromium"
-NET_TOOLS="rsync openssh curl ethtool traceroute gnu-netcat iperf iperf3 \
+NET_TOOLS="rsync openssh curl wget ethtool traceroute gnu-netcat iperf iperf3 \
 networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
 GIT="git"
+COMPILER="clang"
 CODE_TRACING="ctags cscope ack"
-CODE_FORMATTER="clang autopep8"
+# clang-format is included in package <clang>
+CODE_FORMATTER="yapf"
 IMAGE_CROP="pinta"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
@@ -85,9 +87,9 @@ TMUX="tmux"
 SPOTIFY="spotify"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
-$PAGER $BROWSER $NET_TOOLS $GIT $CODE_TRACING $CODE_FORMATTER $IMAGE_CROP \
-$TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL $BOOTLOADER \
-$SECURITY $TMUX $SPOTIFY $OTHER"
+$PAGER $BROWSER $NET_TOOLS $GIT $COMPILER $CODE_TRACING $CODE_FORMATTER \
+$IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL \
+$BOOTLOADER $SECURITY $TMUX $SPOTIFY $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -123,7 +125,7 @@ sudo sed -i -e 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/s
 # Enable sshguard
 sudo iptables -N sshguard
 sudo iptables -A INPUT -p tcp --dport 22 -j sshguard
-sudo iptables-save > iptables.rules
+iptables-save | sudo tee iptables.rules
 sudo cp iptables.rules /etc/iptables/
 rm -f iptables.rules
 sudo systemctl enable sshguard.service
