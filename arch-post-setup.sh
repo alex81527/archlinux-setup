@@ -156,13 +156,13 @@ gsettings set org.gnome.desktop.background picture-uri ~/Pictures/$wallpaper
 echo '================================================================='
 echo 'Download configuration files:'
 echo 'Fetching .xinitrc config file...'
-curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.xinitrc \
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.xinitrc \
     -o ~/.xinitrc
 echo '[~/.xinitrc] updated.'
 
 
 echo 'Fetching .tmux.conf config file...'
-curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.tmux.conf\
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.tmux.conf\
     -o ~/.tmux.conf
 echo '[~/.tmux.conf] updated.'
 
@@ -170,13 +170,13 @@ echo 'Setting up oh-my-zsh...'
 sh -c "$(curl -fsSL \
 https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo 'Fetching .zshrc config file...'
-curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.zshrc \
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.zshrc \
     -o ~/.zshrc
 echo '[~/.zshrc] updated.'
 
 
 echo 'Fetching .zprofile config file...'
-curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/.zprofile \
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.zprofile \
     -o ~/.zprofile
 echo '[~/.zprofile] updated.'
 
