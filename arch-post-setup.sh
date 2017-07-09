@@ -56,8 +56,10 @@ SHELL="zsh"
 EDITOR="gvim"
 PAGER="most"
 BROWSER="chromium"
+# networkmanager uses dhclient as dhcp client by default
 NET_TOOLS="rsync openssh curl wget ethtool traceroute gnu-netcat iperf iperf3 \
-networkmanager wireshark-qt tcpdump nload iw wpa_supplicant nemesis"
+networkmanager dhclient wireshark-qt tcpdump nload iw wpa_supplicant nemesis \
+mosh"
 GIT="git"
 COMPILER="clang"
 CODE_TRACING="ctags cscope ack"
@@ -70,7 +72,7 @@ PYTHON="python python2 python2-virtualenv python-pip python2-pip"
 LINTER="flake8 shellcheck"
 DEBUG="gdb valgrind ltrace strace"
 POWER_SAVING="tlp"
-PDF="foxitreader"
+# PDF="foxitreader"
 KERNEL="linux-zen"
 # GRUB is the bootloader, efibootmgr creates bootable .efi stub entries used by 
 # the GRUB installation script.
@@ -88,7 +90,7 @@ SPOTIFY="spotify"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $GIT $COMPILER $CODE_TRACING $CODE_FORMATTER \
-$IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF $KERNEL \
+$IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $KERNEL \
 $BOOTLOADER $SECURITY $TMUX $SPOTIFY $OTHER"
 
 echo '================================================================='
