@@ -87,11 +87,12 @@ BOOTLOADER="grub efibootmgr os-prober"
 SECURITY="xss-lock-git physlock sshguard"
 TMUX="tmux"
 SPOTIFY="spotify"
+OFFICE="libreoffice-still"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $GIT $COMPILER $CODE_TRACING $CODE_FORMATTER \
 $IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $KERNEL \
-$BOOTLOADER $SECURITY $TMUX $SPOTIFY $OTHER"
+$BOOTLOADER $SECURITY $TMUX $SPOTIFY $OFFICE $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
