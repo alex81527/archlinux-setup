@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 sudo reflector --verbose --latest 10 --sort rate --country TW \
     --save /etc/pacman.d/mirrorlist
 yaourt -Syu -a 
