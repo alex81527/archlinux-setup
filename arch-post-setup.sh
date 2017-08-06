@@ -53,7 +53,7 @@ MULTIMEDIA="vlc qt4 libcdio ffmpeg"
 SHELL="zsh"
 # In order to use system buffer, we need the +clipboard feature, which is 
 # missing in vim.
-EDITOR="gvim"
+EDITOR="gvim visual-studio-code"
 PAGER="most"
 BROWSER="chromium"
 # networkmanager uses dhclient as dhcp client by default
@@ -64,12 +64,12 @@ GIT="git"
 COMPILER="clang"
 CODE_TRACING="ctags cscope ack"
 # clang-format is included in package <clang>
-CODE_FORMATTER="yapf"
+# CODE_FORMATTER="yapf"
 IMAGE_CROP="pinta"
 TEX_SUITE="texlive-most texstudio jabref"
 PLOT="gnuplot"
 PYTHON="python python2 python2-virtualenv python-pip python2-pip"
-LINTER="flake8 shellcheck"
+# LINTER="flake8 shellcheck"
 DEBUG="gdb valgrind ltrace strace"
 POWER_SAVING="tlp"
 # PDF="foxitreader"
@@ -91,8 +91,8 @@ OFFICE="libreoffice-still"
 OTHER="htop screenfetch redshift"
 PACKAGE="$DE $DOCK $INTEL_MICROCODE $FONTS $IM $MULTIMEDIA $SHELL $EDITOR \
 $PAGER $BROWSER $NET_TOOLS $GIT $COMPILER $CODE_TRACING $CODE_FORMATTER \
-$IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $KERNEL \
-$BOOTLOADER $SECURITY $TMUX $SPOTIFY $OFFICE $OTHER"
+$IMAGE_CROP $TEX_SUITE $PLOT $PYTHON $LINTER $DEBUG $POWER_SAVING $PDF \
+$KERNEL $BOOTLOADER $SECURITY $TMUX $SPOTIFY $OFFICE $OTHER"
 
 echo '================================================================='
 echo 'Install Arch Packages'
@@ -184,9 +184,13 @@ curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.z
 echo '[~/.zprofile] updated.'
 
 
-echo 'Installing vim plugins...'
-sh -c "$(curl -sSL \
-https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
+#echo 'Installing vim plugins...'
+#sh -c "$(curl -sSL \
+#https://raw.githubusercontent.com/alex81527/configs/master/vim-setup.sh)"
+echo 'Fetching .vimrc config file...'
+curl -sSL https://raw.githubusercontent.com/alex81527/configs/master/dotfiles/.vimrc_no_vundle \
+    -o ~/.vimrc
+
 
 echo 'Adding git config --global'
 if [ -z "$name" ]; then
